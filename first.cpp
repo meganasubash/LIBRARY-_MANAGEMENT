@@ -58,3 +58,15 @@ void Lib::getdata()
     cout << "\n\t\tEnter Book's Quantity : ";
     cin >> q;
 }
+void Lib::show(int i)
+{
+    cout << "\n\t\tBook Name : " << bookname << endl;
+    cout << "\n\t\tBook's Author Name : " << auname << endl;
+    cout << "\n\t\tBook's ID : " << id << endl;
+    cout << "\n\t\tBook's Publication : " << pub << endl;
+    if (i == 2) // only for librarian
+    {
+        cout << "\n\t\tBook's Price : " << p << endl;
+        cout << "\n\t\tBook's Quantity : " << q << endl;
+    }
+}
