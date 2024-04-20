@@ -70,3 +70,43 @@ void Lib::show(int i)
         cout << "\n\t\tBook's Quantity : " << q << endl;
     }
 }
+void Lib::booklist(int i)
+{
+    int b, r = 0;
+    system("cls"); // to clear console screen
+    // used library stdlib.h;
+    b = branch(i);
+    system("cls");
+    ifstream intf("Booksdata.txt", ios::binary); // This is a C++ standard library class used for reading from files.
+    // intf is an object created
+    if (!intf)
+        cout << "\n\t\tFile Not Found."; // if  if the file cannot be opened for any reason (such as if it does not exist or if there are permission issues), the stream object will be in a "fail" state.
+    else
+    {
+        cout << "\n\t    ************ Book List ************ \n\n";
+        intf.read((char *)this, sizeof(*this));
+        while (!intf.eof()) // to read till end of book
+        {
+            if (b == B)
+            {
+                if (q == 0 && i == 1) // quantity of book is not zero
+                {
+                }
+                else
+                {
+                    r++;
+                    cout << "\n\t\t********** " << r << ". ********** \n";
+                    show(i);
+                }
+            }
+            intf.read((char *)this, sizeof(*this));
+        }
+    }
+    cout << "\n\t\tPress any key to continue.....";
+    getch();
+    system("cls");
+    if (i == 1)
+        student();
+    else
+        librarian();
+}
