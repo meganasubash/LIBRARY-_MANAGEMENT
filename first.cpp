@@ -35,3 +35,26 @@ public:
     void der(char[], int, int);
     void fine(int, int, int, int, int, int);
 };
+void Lib::getdata()
+{
+    int i;
+    fflush(stdin); // to remove input buffer
+    cout << "\n\t\tEnter the details :-\n";
+    cout << "\n\t\tEnter Book's Name : ";
+    cin.getline(bookname, 100); // used to store with spaces
+    for (i = 0; bookname[i] != '\0'; i++)
+    {
+        if (bookname[i] >= 'a' && bookname[i] <= 'z')
+            bookname[i] -= 32; // converting all lowercase to uppercase
+    }
+    cout << "\n\t\tEnter Author's Name : ";
+    cin.getline(auname, 50);
+    cout << "\n\t\tEnter Publication name : ";
+    cin.getline(pub, 50);
+    cout << "\n\t\tEnter Book's ID : ";
+    cin.getline(id, 20);
+    cout << "\n\t\tEnter Book's Price : ";
+    cin >> p;
+    cout << "\n\t\tEnter Book's Quantity : ";
+    cin >> q;
+}
