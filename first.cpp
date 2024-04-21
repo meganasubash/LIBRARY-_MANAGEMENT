@@ -110,3 +110,40 @@ void Lib::booklist(int i)
     else
         librarian();
 }
+void Lib::der(char st[], int b, int x)
+{
+    int i, cont = 0;
+    fstream intf("Booksdata.txt", ios::in | ios::out | ios::ate | ios::binary); // Open a file stream for reading and writing
+    intf.seekg(0);                                                              // Move the get pointer to the beginning of the file
+    intf.read((char *)this, sizeof(*this));                                     // Read data from the file into the object
+    while (!intf.eof())                                                         // Loop until the end of the file is reached
+    {
+        for (i = 0; b == B && id[i] != '\0' && st[i] != '\0' && st[i] == id[i]; i++)
+            ; // Loop through characters of 'id' and 'st' until a mismatch is found or the end of the strings is reached
+        if (id[i] == '\0' && st[i] == '\0')
+        {
+            cont++;
+            if (x == 1)
+            {
+                q--;
+            }
+            else
+            {
+                q++;
+            }
+            intf.seekp(intf.tellp() - sizeof(*this)); // Move the put pointer to the position before the last read/write operation
+            intf.write((char *)this, sizeof(*this));  // Write data from the object back to the file
+            break;
+        }
+        intf.read((char *)this, sizeof(*this)); // Read the next record from the file into the object
+    }
+    if (cont == 0) // If no matching record was found
+    {
+        cout << "\n\t\tBook not found.\n";
+        cout << "\n\n\t\tPress any key to continue.....";
+        getch();       // Wait for a key press
+        system("cls"); // Clear the screen
+        issue();
+    }
+    intf.close(); // Close the file stream
+}
