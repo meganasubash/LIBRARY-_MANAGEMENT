@@ -370,3 +370,47 @@ void Lib::modify()
     system("cls");
     librarian(); // going back to librarian page
 } // end of modify funciton
+//pass function to print password in stars
+void Lib::pass()
+{
+    int i = 0;
+    char ch, st[21], ch1[21] = {"learnprogramo"}; // Declare character arrays to store user input and the correct password
+    cout << "\n\t\tEnter Password : ";            // Prompt the user to enter the password
+    while (1)                                     // Infinite loop for password input
+    {
+        ch = getch(); // Read a character from the console without echoing it
+        if (ch == 13) // If the Enter key is pressed
+        {
+            st[i] = '\0';
+            break;
+        }
+        else if (ch == 8 && i > 0) // If Backspace key is pressed and there are characters in the input buffer
+        {
+            i--;
+            cout << "\b \b"; // Erase the character from the console
+        }
+        else
+        {
+            cout << "*"; // Print a '' character to the console (for password masking)
+            st[i] = ch;
+            i++;
+        }
+    }
+    ifstream inf("password.txt"); // Open the file containing the correct password for reading
+    inf >> ch1;                   // Read the correct password from the file
+    inf.close();
+    for (i = 0; st[i] == ch1[i] && st[i] != '\0' && ch1[i] != '\0'; i++)
+        ;                                // Compare the entered password with the correct password
+    if (st[i] == '\0' && ch1[i] == '\0') // If both strings terminated at the same point
+    {
+        system("cls");
+        librarian();
+    }
+    else // If the entered password is incorrect
+    {
+        cout << "\n\n\t\tWrong Password.\n\n\t\ttry again.....\n";
+        getch();
+        system("cls");
+        get();
+    }
+}
