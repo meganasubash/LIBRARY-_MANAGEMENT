@@ -411,6 +411,7 @@ void Lib::pass()
         cout << "\n\n\t\tWrong Password.\n\n\t\ttry again.....\n";
         getch();
         system("cls");
+        
         get();
     }
 }
